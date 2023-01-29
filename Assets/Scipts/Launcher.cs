@@ -53,6 +53,11 @@ public class Launcher : MonoBehaviourPunCallbacks
     [SerializeField]
     public GameObject quitButton;
 
+    [SerializeField]
+    private string[] allMaps;
+    [SerializeField]
+    private bool changeMapBetweenRounds = true;
+
     private static Launcher _instance;
     public static Launcher Instance
     {
@@ -287,7 +292,19 @@ public class Launcher : MonoBehaviourPunCallbacks
 
     public void StartGame()
     {
-        PhotonNetwork.LoadLevel(levelToPlay);
+        //PhotonNetwork.LoadLevel(levelToPlay);
+
+        PhotonNetwork.LoadLevel(allMaps[Random.Range(0, allMaps.Length)]);
+    }
+
+    public bool GetChangeMapBetweenRounds()
+    {
+        return changeMapBetweenRounds;
+    }
+
+    public string[] GetAllMaps()
+    {
+        return allMaps;
     }
 
     public override void OnMasterClientSwitched(Player newMasterClient)

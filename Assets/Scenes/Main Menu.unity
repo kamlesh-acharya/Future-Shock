@@ -758,6 +758,10 @@ MonoBehaviour:
   startButton: {fileID: 44441486}
   roomTestButton: {fileID: 1529722208}
   quitButton: {fileID: 1798006420}
+  allMaps:
+  - Map 1
+  - Map 2
+  changeMapBetweenRounds: 1
 --- !u!224 &291665268 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2012347094477652401, guid: 18d7a85faa9927b48a774711b41e1e47, type: 3}

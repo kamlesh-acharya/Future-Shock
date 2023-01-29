@@ -9,9 +9,12 @@ EditorBuildSettings:
     path: Assets/Scenes/Main Menu.unity
     guid: 791906416071b3943a17ab2c28d37d27
   - enabled: 1
-    path: Assets/Scenes/Movement Testing.unity
-    guid: 3a34985760420294285d314a5bb33391
-  - enabled: 1
     path: Assets/Scenes/Map 1.unity
     guid: d3d2c380591b55342ab33be24ebf78fc
+  - enabled: 1
+    path: Assets/Scenes/Map 2.unity
+    guid: ef00823c620ee0d41920882537e483c0
+  - enabled: 1
+    path: Assets/Scenes/Movement Testing.unity
+    guid: 3a34985760420294285d314a5bb33391
   m_configObjects: {}
