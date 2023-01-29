@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using System;
 
 public class UIController : MonoBehaviour
 {
@@ -26,6 +27,9 @@ public class UIController : MonoBehaviour
     private GameObject leaderboard;
     [SerializeField]
     private LeaderboardPlayer leaderboardPlayerDisplay;
+
+    [SerializeField]
+    private GameObject endScreen;
 
     private static UIController _instance;
     public static UIController Instance
@@ -106,5 +110,10 @@ public class UIController : MonoBehaviour
     public GameObject GetLeaderboard()
     {
         return leaderboard;
+    }
+
+    public void SetEndScreen(bool flag)
+    {
+        endScreen.SetActive(flag);
     }
 }

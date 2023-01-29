@@ -118,9 +118,18 @@ public class PlayerController : MonoBehaviourPunCallbacks
     {
         if (photonView.IsMine)
         {
-            //To update the camera position outside the Player component 
-            cam.transform.position = viewPoint.transform.position;
-            cam.transform.rotation = viewPoint.transform.rotation;
+            if(MatchManager.Instance.GetCurrentGameState() == MatchManager.GameState.Playing)
+            {
+                //To update the camera position outside the Player component 
+                cam.transform.position = viewPoint.transform.position;
+                cam.transform.rotation = viewPoint.transform.rotation;
+
+            } else
+            {
+                Transform camTransform = MatchManager.Instance.GetCamPosition();
+                cam.transform.position = camTransform.position;
+                cam.transform.rotation = camTransform.rotation;
+            }
         }
     }
 

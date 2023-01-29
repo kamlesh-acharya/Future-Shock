@@ -41,7 +41,7 @@ public class Launcher : MonoBehaviourPunCallbacks
     private GameObject nicknameScreen;
     [SerializeField]
     private TMP_InputField nicknameInput;
-    private bool hasSetNickname;
+    private static bool hasSetNickname;
 
     [SerializeField]
     private string levelToPlay;
@@ -80,6 +80,10 @@ public class Launcher : MonoBehaviourPunCallbacks
         loadingText.text = "Connecting To Network...";
 
         PhotonNetwork.ConnectUsingSettings();
+
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+
 #if UNITY_EDITOR
         roomTestButton.SetActive(true);
         quitButton.SetActive(false);
