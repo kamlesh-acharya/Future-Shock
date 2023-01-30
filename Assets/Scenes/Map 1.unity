@@ -2591,10 +2591,6 @@ PrefabInstance:
       propertyPath: mapCamPoint
       value: 
       objectReference: {fileID: 487909042}
-    - target: {fileID: 4891352650181370299, guid: 9e4920180e8ceaf4685fe6c0a2097180, type: 3}
-      propertyPath: matchLength
-      value: 15
-      objectReference: {fileID: 0}
     - target: {fileID: 4891352650181370300, guid: 9e4920180e8ceaf4685fe6c0a2097180, type: 3}
       propertyPath: m_Name
       value: Match Manager
@@ -2608,6 +2604,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 161560170, guid: d3e57b0ddbe2e7c47b801ab07b26c8db, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6301694416140134788, guid: d3e57b0ddbe2e7c47b801ab07b26c8db, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -2616,9 +2616,29 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6301694416333016794, guid: d3e57b0ddbe2e7c47b801ab07b26c8db, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6301694416444647507, guid: d3e57b0ddbe2e7c47b801ab07b26c8db, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6301694417404675917, guid: d3e57b0ddbe2e7c47b801ab07b26c8db, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6301694417812178752, guid: d3e57b0ddbe2e7c47b801ab07b26c8db, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6301694417812178752, guid: d3e57b0ddbe2e7c47b801ab07b26c8db, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6301694417812178752, guid: d3e57b0ddbe2e7c47b801ab07b26c8db, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -15
       objectReference: {fileID: 0}
     - target: {fileID: 6301694417951766521, guid: d3e57b0ddbe2e7c47b801ab07b26c8db, type: 3}
       propertyPath: m_Name

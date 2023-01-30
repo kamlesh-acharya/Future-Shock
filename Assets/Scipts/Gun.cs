@@ -13,6 +13,9 @@ public class Gun : MonoBehaviour
     private int shotDamage;
     public GameObject muzzleFlash;
 
+    [SerializeField]
+    private float adsZoom;
+
     public float GetTimeBetweenShot()
     {
         return timeBetweenShot;
@@ -26,5 +29,10 @@ public class Gun : MonoBehaviour
     public int GetDamagePerShot()
     {
         return shotDamage;
+    }
+
+    public float GetAdsZoom()
+    {
+        return adsZoom;
     }
 }

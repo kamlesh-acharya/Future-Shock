@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using System;
+using Photon.Pun;
 
 public class UIController : MonoBehaviour
 {
@@ -34,6 +35,9 @@ public class UIController : MonoBehaviour
     [SerializeField]
     private TMP_Text timerText;
 
+    [SerializeField]
+    private GameObject optionsScreen;
+
     private static UIController _instance;
     public static UIController Instance
     {
@@ -50,6 +54,21 @@ public class UIController : MonoBehaviour
     private void Awake()
     {
         _instance = this;
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            ShowHideOptions();
+        }
+
+        if(optionsScreen.activeInHierarchy && Cursor.lockState != CursorLockMode.None)
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
+
     }
 
     public void SetOverHeatedMessage(bool flag)
@@ -115,6 +134,11 @@ public class UIController : MonoBehaviour
         return leaderboard;
     }
 
+    public GameObject GetOptionsScreen()
+    {
+        return optionsScreen;
+    }
+
     public void SetEndScreen(bool flag)
     {
         endScreen.SetActive(flag);
@@ -128,5 +152,28 @@ public class UIController : MonoBehaviour
     public void SetTimer(bool flag)
     {
         timerText.gameObject.SetActive(flag);
+    }
+
+    public void ShowHideOptions()
+    {
+        if (!optionsScreen.activeInHierarchy)
+        {
+            optionsScreen.SetActive(true);
+        } else
+        {
+            optionsScreen.SetActive(false);
+            Cursor.lockState = CursorLockMode.Locked;
+        }
+    }
+
+    public void ReturnToMainMenu()
+    {
+        PhotonNetwork.AutomaticallySyncScene = false;
+        PhotonNetwork.LeaveRoom();
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
     }
 }

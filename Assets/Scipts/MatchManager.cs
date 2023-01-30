@@ -433,6 +433,7 @@ public class MatchManager : MonoBehaviourPunCallbacks, IOnEventCallback
             PhotonNetwork.DestroyAll();
         }
 
+        UIController.Instance.GetOptionsScreen().SetActive(false);
         UIController.Instance.SetEndScreen(true);
         ShowLeaderboard();
 

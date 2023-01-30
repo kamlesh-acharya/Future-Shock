@@ -65,7 +65,7 @@ public class Launcher : MonoBehaviourPunCallbacks
         {
             if (_instance == null)
             {
-                Debug.LogError("UIController is Null");
+                Debug.LogError("Launcher is Null");
             }
             return _instance;
         }
@@ -84,7 +84,10 @@ public class Launcher : MonoBehaviourPunCallbacks
         loadingScreen.SetActive(true);
         loadingText.text = "Connecting To Network...";
 
-        PhotonNetwork.ConnectUsingSettings();
+        if (!PhotonNetwork.IsConnected)
+        {
+            PhotonNetwork.ConnectUsingSettings();
+        }
 
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;

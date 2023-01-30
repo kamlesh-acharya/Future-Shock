@@ -44,7 +44,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   allPlayers: []
-  killsToWin: 3
+  killsToWin: 15
   mapCamPoint: {fileID: 0}
   waitAfterEnding: 5
   perpetual: 1
+  matchLength: 180

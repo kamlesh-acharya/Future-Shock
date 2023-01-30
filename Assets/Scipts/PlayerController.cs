@@ -49,6 +49,10 @@ public class PlayerController : MonoBehaviourPunCallbacks
     private Gun[] allGuns;
     private int selectedGun = 1;
 
+    private float adsSpeed = 5f;
+    [SerializeField]
+    private Transform adsOutPoint, adsInPoint;
+
     [SerializeField]
     private GameObject playerHitImpact;
 
@@ -64,6 +68,9 @@ public class PlayerController : MonoBehaviourPunCallbacks
 
     [SerializeField]
     private Transform modelGunPoint, gunHolder;
+
+    [SerializeField]
+    private Material[] allSkins;
 
     // Start is called before the first frame update
     void Start()
@@ -90,6 +97,9 @@ public class PlayerController : MonoBehaviourPunCallbacks
             gunHolder.localPosition = Vector3.zero;
             gunHolder.localRotation = Quaternion.identity;
         }
+
+        //Repeat the skins using modulos so any number of actor comes it has a skin
+        playerModel.GetComponent<Renderer>().material = allSkins[photonView.Owner.ActorNumber % allSkins.Length];
 
         //Transform newTrans = SpawnManager.Instance.GetSpawnPoint();
         //transform.position = newTrans.position;
@@ -248,6 +258,16 @@ public class PlayerController : MonoBehaviourPunCallbacks
     {
         UIController.Instance.SetHeatValueToSlider(heatCounter/maxHeat);
 
+        if (Input.GetMouseButton(1))
+        {
+            cam.fieldOfView = Mathf.Lerp(cam.fieldOfView, allGuns[selectedGun].GetAdsZoom(), adsSpeed * Time.deltaTime);
+            gunHolder.position = Vector3.Lerp(gunHolder.position, adsInPoint.position, adsSpeed * Time.deltaTime);
+        } else
+        {
+            cam.fieldOfView = Mathf.Lerp(cam.fieldOfView, 60f, adsSpeed * Time.deltaTime);
+            gunHolder.position = Vector3.Lerp(gunHolder.position, adsOutPoint.position, adsSpeed * Time.deltaTime);
+        }
+
         if (allGuns[selectedGun].muzzleFlash.activeInHierarchy)
         {
             muzzleCounter -= Time.deltaTime;
@@ -376,7 +396,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
         }
         else if (Cursor.lockState == CursorLockMode.None)
         {
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonDown(0) && !UIController.Instance.GetOptionsScreen().activeInHierarchy)
             {
                 Cursor.lockState = CursorLockMode.Locked;
             }
