@@ -31,6 +31,9 @@ public class UIController : MonoBehaviour
     [SerializeField]
     private GameObject endScreen;
 
+    [SerializeField]
+    private TMP_Text timerText;
+
     private static UIController _instance;
     public static UIController Instance
     {
@@ -115,5 +118,15 @@ public class UIController : MonoBehaviour
     public void SetEndScreen(bool flag)
     {
         endScreen.SetActive(flag);
+    }
+
+    public void SetTimerText(string time)
+    {
+        timerText.text = time;
+    }
+
+    public void SetTimer(bool flag)
+    {
+        timerText.gameObject.SetActive(flag);
     }
 }
