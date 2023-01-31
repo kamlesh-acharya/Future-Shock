@@ -72,6 +72,9 @@ public class PlayerController : MonoBehaviourPunCallbacks
     [SerializeField]
     private Material[] allSkins;
 
+    [SerializeField]
+    private AudioSource footStepSlow, footStepFast;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -214,10 +217,31 @@ public class PlayerController : MonoBehaviourPunCallbacks
         if (Input.GetKey(KeyCode.LeftShift))
         {
             activeMoveSpeed = runSpeed;
+            
+            if(!footStepFast.isPlaying && moveDir != Vector3.zero)
+            {
+                footStepSlow.Stop();
+                footStepFast.Play();
+                //photonView.RPC("FootStepFast", RpcTarget.All);
+            }
         }
         else
         {
             activeMoveSpeed = moveSpeed;
+
+            if (!footStepSlow.isPlaying && moveDir != Vector3.zero)
+            {
+                footStepFast.Stop();
+                footStepSlow.Play();
+                //photonView.RPC("FootStepSlow", RpcTarget.All);
+            }
+        }
+
+        if(moveDir == Vector3.zero || !isGrounded)
+        {
+            footStepFast.Stop();
+            footStepSlow.Stop();
+            //photonView.RPC("StopFootStep", RpcTarget.All);
         }
 
         float yVel = movement.y;
@@ -246,6 +270,28 @@ public class PlayerController : MonoBehaviourPunCallbacks
         movement.y += Physics.gravity.y * Time.deltaTime * gravityMod;
 
         charCon.Move(movement * Time.deltaTime);
+    }
+
+    
+    [PunRPC]
+    public void FootStepFast()
+    {
+        footStepSlow.Stop();
+        footStepFast.Play();
+    }
+
+    [PunRPC]
+    public void FootStepSlow()
+    {
+        footStepFast.Stop();
+        footStepSlow.Play();
+    }
+
+    [PunRPC]
+    public void StopFootStep()
+    {
+        footStepFast.Stop();
+        footStepSlow.Stop();
     }
 
     private void AnimatePlayer()
@@ -348,8 +394,28 @@ public class PlayerController : MonoBehaviourPunCallbacks
             overHeated = true;
         }
 
-        allGuns[selectedGun].muzzleFlash.SetActive(true);
+        //Calling MuzzleFlash from RPC too frp, Shooting Sound
+        //allGuns[selectedGun].muzzleFlash.SetActive(true);
         muzzleCounter = muzzleDisplayTime;
+
+        //Sound Play Normal vs Sound from RPC 
+        //allGuns[selectedGun].PlayShotSound();
+        photonView.RPC("ShootingSound", RpcTarget.All);
+
+    }
+
+    [PunRPC]
+    public void ShootingSound()
+    {
+        allGuns[selectedGun].muzzleFlash.SetActive(true);
+        allGuns[selectedGun].PlayShotSound();
+        StartCoroutine(Muzzle());
+    }
+
+    private IEnumerator Muzzle()
+    {
+        yield return new WaitForSeconds(0.0166f);
+        allGuns[selectedGun].muzzleFlash.SetActive(false);
     }
 
     [PunRPC]

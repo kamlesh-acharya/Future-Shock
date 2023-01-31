@@ -38,6 +38,10 @@ MonoBehaviour:
   - DestroyRpc
   - DealDamage
   - SetGun
+  - ShootingSound
+  - FootStepFast
+  - FootStepSlow
+  - StopFootStep
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 0

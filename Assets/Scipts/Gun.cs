@@ -16,6 +16,9 @@ public class Gun : MonoBehaviour
     [SerializeField]
     private float adsZoom;
 
+    [SerializeField]
+    private AudioSource shotSound;
+
     public float GetTimeBetweenShot()
     {
         return timeBetweenShot;
@@ -34,5 +37,11 @@ public class Gun : MonoBehaviour
     public float GetAdsZoom()
     {
         return adsZoom;
+    }
+
+    public void PlayShotSound()
+    {
+        shotSound.Stop();
+        shotSound.Play();
     }
 }
