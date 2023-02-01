@@ -2718,6 +2718,10 @@ PrefabInstance:
       propertyPath: mapCamPoint
       value: 
       objectReference: {fileID: 487909042}
+    - target: {fileID: 4891352650181370299, guid: 9e4920180e8ceaf4685fe6c0a2097180, type: 3}
+      propertyPath: matchLength
+      value: 180
+      objectReference: {fileID: 0}
     - target: {fileID: 4891352650181370300, guid: 9e4920180e8ceaf4685fe6c0a2097180, type: 3}
       propertyPath: m_Name
       value: Match Manager

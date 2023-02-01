@@ -76,6 +76,11 @@ public class Launcher : MonoBehaviourPunCallbacks
         _instance = this;
     }
 
+    ~Launcher()
+    {
+        Debug.Log("Launcher Class Destructed");
+    }
+
     // Start is called before the first frame update
     void Start()
     {

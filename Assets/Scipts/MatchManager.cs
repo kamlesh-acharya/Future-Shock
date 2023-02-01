@@ -97,7 +97,7 @@ public class MatchManager : MonoBehaviourPunCallbacks, IOnEventCallback
             }
         }
 
-        if(PhotonNetwork.IsMasterClient && currentMatchTime > 0f && state == GameState.Playing)
+        if(PhotonNetwork.IsMasterClient && currentMatchTime >= 0f && state == GameState.Playing)
         {
             currentMatchTime -= Time.deltaTime;
 
@@ -454,7 +454,8 @@ public class MatchManager : MonoBehaviourPunCallbacks, IOnEventCallback
         {
             PhotonNetwork.AutomaticallySyncScene = false;
             PhotonNetwork.LeaveRoom();
-        } else
+        } 
+        else
         {
             if (PhotonNetwork.IsMasterClient)
             {
@@ -465,7 +466,6 @@ public class MatchManager : MonoBehaviourPunCallbacks, IOnEventCallback
                 else
                 {
                     int newLevel = Random.Range(0, Launcher.Instance.GetAllMaps().Length);
-
                     if(Launcher.Instance.GetAllMaps()[newLevel] == SceneManager.GetActiveScene().name)
                     {
                         NextMatchSend();
