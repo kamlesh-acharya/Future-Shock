@@ -108,8 +108,8 @@ public class MatchManager : MonoBehaviourPunCallbacks, IOnEventCallback
                 state = GameState.Ending;
 
                 ListPlayerSend();
-
-                StateCheck();
+                
+                //StateCheck();
             }
 
             UpdateTimerDisplay();
@@ -277,11 +277,11 @@ public class MatchManager : MonoBehaviourPunCallbacks, IOnEventCallback
                 {
                     case 0: //Kills
                         allPlayers[i].kills += amount;
-                        Debug.Log("Player " + allPlayers[i].name + " kills " + allPlayers[i].kills);
+                        //Debug.Log("Player " + allPlayers[i].name + " kills " + allPlayers[i].kills);
                         break;
                     case 1: //Deaths
                         allPlayers[i].deaths += amount;
-                        Debug.Log("Player " + allPlayers[i].name + " deaths " + allPlayers[i].deaths);
+                        //Debug.Log("Player " + allPlayers[i].name + " deaths " + allPlayers[i].deaths);
                         break;
                 }
                 if (i == index)
@@ -459,19 +459,20 @@ public class MatchManager : MonoBehaviourPunCallbacks, IOnEventCallback
         {
             if (PhotonNetwork.IsMasterClient)
             {
-                if (!Launcher.Instance.GetChangeMapBetweenRounds())
+                if (!MapsDetails.Instance.GetChangeMapBetweenRounds())
                 {
                     NextMatchSend();
                 }
                 else
                 {
-                    int newLevel = Random.Range(0, Launcher.Instance.GetAllMaps().Length);
-                    if(Launcher.Instance.GetAllMaps()[newLevel] == SceneManager.GetActiveScene().name)
+                    int newLevel = Random.Range(0, MapsDetails.Instance.GetAllMaps().Length);
+                    if(MapsDetails.Instance.GetAllMaps()[newLevel] == SceneManager.GetActiveScene().name)
                     {
                         NextMatchSend();
                     } else
                     {
-                        PhotonNetwork.LoadLevel(Launcher.Instance.GetAllMaps()[newLevel]);
+                        PhotonNetwork.LoadLevel(MapsDetails.Instance.GetAllMaps()[newLevel]);
+                        Debug.Log("New Scene To Load" + MapsDetails.Instance.GetAllMaps()[newLevel] + " " + PhotonNetwork.NickName);
                     }
                 }
             }

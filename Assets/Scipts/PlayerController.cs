@@ -369,7 +369,7 @@ public class PlayerController : MonoBehaviourPunCallbacks
             //Debug.Log("We hit " + hit.collider.gameObject.name);
             if(hit.collider.gameObject.CompareTag("Player"))
             {
-                Debug.Log("Hit: " + hit.collider.gameObject.GetPhotonView().Owner.NickName);
+                //Debug.Log("Hit: " + hit.collider.gameObject.GetPhotonView().Owner.NickName);
                 PhotonNetwork.Instantiate(playerHitImpact.name, hit.point, Quaternion.identity);
 
                 hit.collider.gameObject.GetPhotonView().RPC("DealDamage", RpcTarget.All, photonView.Owner.NickName, allGuns[selectedGun].GetDamagePerShot(), PhotonNetwork.LocalPlayer.ActorNumber);
